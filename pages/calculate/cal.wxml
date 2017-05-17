@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="cal-panel">
+    <view class="cal-title">
+      <text>{{ i18n.cal_hashrate}}</text>
+      <view></view>
+      <text>{{ i18n.cal_24h_earning}}</text>
+    </view>
+    <view class="cal-content">
+      <view class="cal-input">
+        <input type="digit" maxlength="12" placeholder="{{ i18n.cal_enter_hashrate}}" 
+               value="{{config.hashrate}}" bindinput="calculateIncomeBTC" />
+        <text>TH/s</text>
+      </view>
+      <view class="icon-blank">
+        <image class="icon-change" src="/images/icon_change.png" mode="aspectFit" />
+      </view>
+      <view class="cal-input">
+        <input type="digit" maxlength="10" placeholder="{{ i18n.cal_enter_earning}}" value="{{config.incomeBTC}}" bindinput="calculateHashrate"/>
+        <text>BTC</text>
+      </view>
+    </view>
+    <text class="cal-rate">{{ i18n.cal_fiat_currency}} {{config.Symbol}} {{config.rateIncome}}</text>
+    <view class="cal-express">
+      <text class="cal-note">*</text>
+      <text>{{ i18n.cal_express}} </text>
+    </view>
+  </view>
+  <view class="cal-config">
+    <view class="cal-section">
+      <label>{{ i18n.cal_currency}}</label>
+      <picker range="{{currencyMap}}" value="{{config.currencyIndex}}" bindchange="currencyChange">
+        <view>{{currencyMap[config.currencyIndex]}}</view>
+      </picker>
+      <image src="/images/arrow_down.png" mode="aspectFit" class="cal-muitle cal-drop"></image>
+    </view>
+    <view class="cal-section">
+      <label>{{ i18n.cal_prcie}}</label>
+      <input type="digit" value="{{config.BTCPrice}}" bindinput="changePrice"/>
+      <text class="cal-muitle">{{config.Symbol}}/BTC</text>
+      <image src="/images/loading5.gif" mode="aspectFit" class="cal-muitle cal-loading-price" hidden="{{loading}}"></image>
+    </view>
+    <view class="cal-section">
+      <label>{{ i18n.cal_diff}}</label>
+      <input type="number" value="{{config.diff}}" bindinput="changeDiff"/>
+      <image src="/images/loading5.gif" mode="aspectFit" class="cal-muitle cal-loading" hidden="{{loading}}"></image>
+    </view>
+    <view class="cal-section">
+      <label>{{ i18n.cal_fee}}</label>
+      <input type="digit" value="{{config.poolFee}}" bindinput="changePoolFee"/>
+      <text class="cal-muitle">%</text>
+    </view>
+  </view>
+</view>

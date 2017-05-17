@@ -1,0 +1,9 @@
+{
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "BTC.COM",
+    "backgroundColor": "#EFEFF4",
+    "backgroundTextStyle": "dark",
+    "disableScroll": false,
+    "enablePullDownRefresh":true
+}

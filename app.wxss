@@ -1,0 +1,19 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  font-size: 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #efeff4;
+  font-family: "Microsoft YaHei", 微软雅黑, Arial, sans-serif;
+}
+
+.placeholder {
+  color: #b2b2b2;
+  font-size: 14px;
+}

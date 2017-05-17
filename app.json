@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/calculate/cal"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "BTC.COM",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#EFEFF4"
+  },
+  "tabBar": {
+    "color": "#9B9B9B",
+    "selectedColor": "#3c78c2",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/search_normal.png",
+        "selectedIconPath": "images/search_pressed.png",
+        "text": "查询"
+      },
+      {
+        "pagePath": "pages/calculate/cal",
+        "iconPath": "images/counter_normal.png",
+        "selectedIconPath": "images/counter_pressed.png",
+        "text": "挖矿计算器"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

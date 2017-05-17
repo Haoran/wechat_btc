@@ -1,0 +1,217 @@
+<view class="container">
+  <view class="detail">
+
+    <view wx:if="{{type=='block'}}" class="detail-table">
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.height}}</text>
+        <text class="detail-right">{{detail.formatHeight}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.confrim_num}}</text>
+        <text class="detail-right">{{detail.confirm}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.size}}</text>
+        <text class="detail-right">{{detail.size}} Bytes</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.number}}</text>
+        <text class="detail-right">{{detail.n_tx}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.time}}</text>
+        <text class="detail-right">{{detail.time}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.version}}</text>
+        <text class="detail-right">{{detail.ver}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.diff}}</text>
+        <text class="detail-right">{{detail.difficulty}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.report}}</text>
+        <text class="detail-right">{{detail.relayed_by}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">Bits</text>
+        <text class="detail-right">0×{{detail.bits}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">Nonce</text>
+        <text class="detail-right">0×{{detail.nonce}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.block_hash}}</text>
+        <text class="detail-right" style="font-size:10px;">{{detail.hash}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">Merkle Root</text>
+        <text class="detail-right" style="font-size:10px;">{{detail.mrkl_root}}</text>
+      </view>
+      <view class="detail-info message-title"></view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.prev_block}}</text>
+        <text class="detail-right">{{detail.prev_block}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.next_block}}</text>
+        <text class="detail-right">{{detail.next_block}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{type=='address'}}" class="detail-table detail-address">
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.address}}</text>
+        <text class="detail-right">{{detail.address}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.balance}}</text>
+        <text class="detail-right">{{detail.final_balance}} BTC</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.totalSent}}</text>
+        <text class="detail-right">{{detail.total_sent}} BTC</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left" style="width:60%">{{ i18n.totalRecevied}}</text>
+        <text class="detail-right">{{detail.total_received}} BTC</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{ i18n.txCount}}</text>
+        <text class="detail-right">{{detail.n_tx}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left" style="width:40%">{{ i18n.first_trading_time}}</text>
+        <text class="detail-right">{{detail.first_tx_timestamp}}</text>
+      </view>
+      <view class="detail-info" wx:if="{{detail.unconfirmed_tx_count<=0}}">
+        <text class="detail-left" style="width:40%">{{ i18n.last_trading_time}}</text>
+        <text class="detail-right">{{detail.last_tx_timestamp}}</text>
+      </view>
+      <view class="detail-info message-title" wx:if="{{detail.unconfirmed_tx_count>0}}">
+         {{ i18n.tx_unconfirmed}}
+      </view>
+      <view class="detail-info message-title" wx:if="{{detail.unconfirmed_tx_count>0}}"
+            style="align-items:flex-end;" >
+         {{ i18n.un_tx}}
+      </view>
+     <view class="detail-info" wx:if="{{detail.unconfirmed_tx_count>0}}">
+        <text class="detail-left">{{ i18n.un_tx_count}}</text>
+        <text class="detail-right">{{detail.unconfirmed_tx_count}}</text>
+      </view>
+      <view class="detail-info" wx:if="{{detail.unconfirmed_tx_count>0}}">
+        <text class="detail-left">{{ i18n.un_sent}}</text>
+        <text class="detail-right">{{detail.unconfirmed_send}} BTC</text>
+      </view>
+      <view class="detail-info" wx:if="{{detail.unconfirmed_tx_count>0}}">
+        <text class="detail-left">{{ i18n.un_recevied}}</text>
+        <text class="detail-right">{{detail.unconfirmed_received}} BTC</text>
+      </view>
+      <view class="qrCode-panel">
+        <canvas class="qrCode" canvas-id="mycanvas" />
+        <text class="qrCode-text">{{detail.address}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{type=='tx'}}" class="detail-table">
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.tx_hash}}</text>
+        <text class="detail-right" style="font-size:10px;">{{detail.hash}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.confrim_num}}</text>
+        <text class="detail-right">{{detail.confirm}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.block_height}}</text>
+        <view class="detail-right link-height" data-height="{{detail.height}}" bindtap="getHeight">
+          {{detail.formatHeight}}
+        </view>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.block_time}}</text>
+        <text class="detail-right">{{detail.timestamp}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.fee}}</text>
+        <text class="detail-right">{{detail.fee}} BTC</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.size}}</text>
+        <text class="detail-right">{{detail.size}} Bytes</text>
+      </view>
+      <view class="blank"></view>
+    </view>
+
+    <view wx:if="{{type=='network'}}" class="detail-table">
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_hash}}</text>
+        <text class="detail-right">{{detail.hash_rate}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.diff}}</text>
+        <text class="detail-right">{{detail.difficulty}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_mining_earin}}</text>
+        <text class="detail-right">1T * 24 = {{detail.income}} BTC</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_24h_rate}}</text>
+        <text class="detail-right">{{detail.tx_24h_rate}} {{i18n.status_tx_s}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left" style="width:60%">{{i18n.status_recommend_fee}}</text>
+        <text class="detail-right">{{detail.fees_recommended}} BTC/KB</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left" style="width:60%">{{i18n.status_block_size}}</text>
+        <text class="detail-right" >{{detail.median_block_size}}</text>
+      </view>
+      <view class="detail-info message-title" style="align-items:flex-end;" >
+         {{i18n.status_next_diff}}
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.diff}}</text>
+        <text class="detail-right">{{detail.next_difficulty}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_mining_earin}}</text>
+        <text class="detail-right">1T * 24 = {{detail.next_income}} BTC</text>
+      </view>
+       <view class="detail-info">
+        <text class="detail-left">{{i18n.time}}</text>
+        <text class="detail-right">{{detail.adjust_time}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_block_left}}</text>
+        <text class="detail-right">{{detail.left_block}}</text>
+      </view>
+       <view class="detail-info message-title" style="align-items:flex-end;" >
+         {{i18n.status_unconfirmed_tx}}
+      </view>
+       <view class="detail-info">
+        <text class="detail-left">{{i18n.status_count}}</text>
+        <text class="detail-right">{{detail.unconfirmed_txs_count}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left">{{i18n.status_size}}</text>
+        <text class="detail-right">{{detail.unconfirmed_txs_size}}</text>
+      </view>
+       <view class="detail-info message-title" style="align-items:flex-end;" >
+         {{i18n.status_reward_drop}}
+      </view>
+       <view class="detail-info">
+        <text class="detail-left"> {{i18n.time}}</text>
+        <text class="detail-right">{{detail.estimated_reward_drop_time}}</text>
+      </view>
+      <view class="detail-info">
+        <text class="detail-left"> {{i18n.status_block_left}}</text>
+        <text class="detail-right">{{detail.estimated_reward_drop_block}}</text>
+      </view>
+    </view>
+
+  </view>
+</view>

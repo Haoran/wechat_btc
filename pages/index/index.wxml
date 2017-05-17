@@ -1,0 +1,44 @@
+
+<!--index.wxml-->
+<view class="container">
+  <form class="form" bindsubmit="submitSearch">
+    <view class="search">
+      <icon type="search" size="14" class="icon-search"></icon>
+      <icon type="clear" size="14" class="icon-clear" hidden="{{!keywords || !focus}}" bindtap="clearKeywords"></icon>
+      <input class="search-input" placeholder-class="placeholder" focus="{{focus}}" value="{{keywords}}" 
+             placeholder="{{i18n.placeholder}}" bindconfirm="submitSearch" bindinput="bindKeyInput" bindfocus="bindInputFocus" bindblur="onblur"
+             style="{{focus ? 'width:80%' : 'width:100%'}}" />
+      <button class="search_submit" hidden="{{!focus}}" size="default" plain="true" bindtap="onblur">{{i18n.cancel}}</button>
+    </view>
+    <view class="no-search-list" hidden="{{hidden}}" plain="true" bindtap="nolistHidden">
+      <text class="no-result">{{i18n.noResult}}</text>
+      <text class="reason">{{i18n.reason}}</text>
+    </view>
+    <view class="operation">
+      <view class="scan" bindtap='scanQrCode' >
+        <image class="icon-scan" src="/images/rectangle@3x.png" mode="aspectFit" />
+        <text class="view-text">{{i18n.scan}}</text>
+      </view>
+      <view class="line"></view>
+      <view class="paster" bindtap='network'>
+        <image class="icon-copy" src="/images/network@3x.png" mode="aspectFit" />
+        <text class="view-text">{{i18n.network}}</text>
+      </view>
+    </view>
+    <view class="history">
+      <text class="history-title">{{i18n.searchHistory}}</text>
+      <view class="trash" bindtap="clear">
+        <image src="/images/icon_trash@3x.png" mode="aspectFit" class="trash-img" />
+      </view>
+    </view>
+    <scroll-view class="search-history" scroll-y="true">
+      <view class="noAddressHistory" wx:if="{{addressHistory.length==0}}">
+        {{i18n.noAddressHistory}}
+      </view>
+      <view class="addressList" wx:for="{{addressHistory}}" wx:key="">
+        <view bindtap="submitSearch" data-address="{{item}}"> {{item}}</view>
+      </view>
+      <view class="addressList" wx:for="{{arrayBlank}}" wx:key=""></view>
+    </scroll-view>
+  </form>
+</view>
